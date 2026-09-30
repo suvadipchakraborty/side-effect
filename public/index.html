@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Side Effect Checker – medicine side effects by salt name</title>
+<meta name="description" content="Type a medicine's salt name and see its official FDA side effects and warnings.">
+<meta name="theme-color" content="#0F766E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Side Effect Checker">
+<meta property="og:title" content="Side Effect Checker – know what's in your medicine">
+<meta property="og:description" content="Type any salt (Paracetamol, Amoxicillin, Metformin…) and see official warnings and the most reported side effects.">
+<meta property="og:url" content="https://side-effect.suvadipchakraborty.workers.dev/">
+<meta property="og:image" content="https://side-effect.suvadipchakraborty.workers.dev/preview.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://side-effect.suvadipchakraborty.workers.dev/preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="pill-logo"></span>Side Effect Checker</div>
+  <div class="top-actions">
+    <button id="installBtn" class="chip-btn" hidden>Save app</button>
+    <button id="shareBtn" class="icon-btn" aria-label="Share app">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 002 2h10a2 2 0 002-2v-5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section id="tab-home" class="tab active">
+    <div class="hero">
+      <h1>Salt in.<br>Side effects,<br>sorted.</h1>
+      <div class="capsule" aria-hidden="true"><span class="cap-l" id="capBrand">Paracetamol</span><span class="cap-r" id="capSalt">Side effects</span></div>
+      <p class="lead">Type a medicine's salt name, the ingredient printed on the strip. We pull official warnings and real-world reported reactions from the US FDA.</p>
+    </div>
+
+    <form id="searchForm" class="search" autocomplete="off">
+      <input id="q" type="search" placeholder="Salt name, e.g. Paracetamol" enterkeyhint="search" aria-label="Salt or generic name" required>
+      <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    </form>
+    <div class="quick" id="quick"></div>
+
+    <div id="result" aria-live="polite">
+      <div class="empty">
+        <div class="empty-art"><i></i><i></i><i></i></div>
+        <h3>Nothing searched yet</h3>
+        <p>Type a salt name above, or tap one of the examples.</p>
+      </div>
+    </div>
+
+    <details class="how" open>
+      <summary>How to use</summary>
+      <ol>
+        <li>Find the salt (composition) on the strip or box, e.g. Paracetamol 650 mg.</li>
+        <li>Type it in. For combinations, separate salts with + or a comma.</li>
+        <li>Read the warnings and see which reactions are reported most.</li>
+      </ol>
+    </details>
+
+    <div id="recentWrap" hidden><h4 class="sec">Recent searches <button id="clearRecent" class="link">Clear</button></h4><div class="quick" id="recent"></div></div>
+  </section>
+
+  <section id="tab-about" class="tab">
+    <h2>About this app</h2>
+    <p>Every medicine sold in India lists its salt (generic composition) on the pack, but safety information is usually written for the salt, not the brand. This app lets you type the salt and see the official safety information in plain, scannable cards.</p>
+    <h3>How it works</h3>
+    <ol class="plain">
+      <li><b>You type the salt.</b> Indian and UK names are mapped to the US names openFDA uses, for example Paracetamol becomes Acetaminophen.</li>
+      <li><b>We fetch the data.</b> The drug label gives official warnings, uses, interactions and pregnancy notes. Adverse event reports show how often each reaction was reported.</li>
+    </ol>
+    <h3>Data source</h3>
+    <ul class="plain"><li><b>openFDA</b> – US FDA drug labels and adverse event reports (FAERS). It covers drugs sold in the US, so some India-only salts will not be found.</li></ul>
+    <div class="disclaimer">
+      <b>Medical disclaimer</b>
+      <p>This app is for general information only. It is not medical advice, diagnosis or treatment. Adverse event counts show what was reported, not how likely a reaction is, and reports do not prove a drug caused the reaction. US labels may differ from Indian ones. Always ask a doctor or pharmacist before starting, changing or stopping any medicine. In an emergency, call your local emergency number.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Built by Suva</span>
+  <a id="feedback" class="chip-btn" href="mailto:suvadipchakraborty@gmail.com?subject=Side%20Effect%20Checker%20feedback">
+    <svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg>Feedback</a>
+</footer>
+
+<nav class="tabbar">
+  <button data-tab="home" class="on"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search</button>
+  <button data-tab="about"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>About</button>
+</nav>
+<div id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
